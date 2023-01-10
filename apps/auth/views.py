@@ -5,9 +5,18 @@ import bcrypt
 from django.views import View
 from django.http  import JsonResponse
 
-from apps.auth.models import User
+from rest_framework.response import Response
+
+from apps.auth.models      import User
+from apps.auth.serializers import UserSerializer
 
 class UserView(View):
+    def get(self, reqeust):
+        user_row   = User.objects.get(id=1)
+        serializer = UserSerializer(user_row)
+
+        return JsonResponse({'user': serializer.data})
+
     def post(self, request):
         data = json.loads(request.body)
         
