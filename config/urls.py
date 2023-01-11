@@ -15,6 +15,4 @@ Including another URLconf
 """
 from django.urls import path, include
 
-urlpatterns = [
-    path('users', include('apps.auth.urls'))
-]
+urlpatterns = [path("users", include("apps.auth.urls"))]
