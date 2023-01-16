@@ -3,8 +3,8 @@ from datetime import datetime
 from .models import Comment
 from .serializers import CommentSerializer
 
-invalid_data = {"a": 1, "b": 2, "c": 3}
-valid_data = {"email": "lak@na.com", "content": "a", "created": datetime.now()}
+INVALID_DATA = {"a": 1, "b": 2, "c": 3}
+VALID_DATA = {"email": "lak@na.com", "content": "a", "created": datetime.now()}
 
 
 def call_create_with_save(data):
