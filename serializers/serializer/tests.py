@@ -20,3 +20,17 @@ def call_save_with_invalid_data(data):
 
     except Exception as e:
         print(e)
+
+
+def call_save_with_valid_data(data):
+    try:
+        # 키워드 인자로 data 하나만 넣었기때문에 save시 create메서드를 호출한다.
+        comment = CommentSerializer(data=valid_data)
+        print("is_valid: ", comment.is_valid())
+        print("comment_errors: ", comment.errors)
+        print("comment.validated_data: ", comment.validated_data)
+        # comment의  validated_data를 인자로 create메서드를 호출한다.
+        comment.save()
+
+    except Exception as e:
+        print(e)
