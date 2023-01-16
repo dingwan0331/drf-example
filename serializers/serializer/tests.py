@@ -8,6 +8,7 @@ VALID_DATA = {"email": "lak@na.com", "content": "a", "created": datetime.now()}
 
 
 def call_create_with_save(data):
+    print("call_create_with_save")
     try:
         # 키워드 인자로 data 하나만 넣었기때문에 save시 create메서드를 호출한다.
         comment = CommentSerializer(data=data)
@@ -22,6 +23,7 @@ def call_create_with_save(data):
 
 
 def call_update_with_save(data):
+    print("call_update_with_save")
     try:
         # save시 DB object와 data두가지를 인자로 넣었기에 update메서드를 호출한다.
         comment_raw = Comment.objects.last()
