@@ -36,3 +36,19 @@ def call_update_with_save(data):
 
     except Exception as e:
         print(e)
+
+
+def call_save_with_raise_exception(data):
+    print("call_save_with_raise_exception")
+    try:
+        # save시 DB object와 data두가지를 인자로 넣었기에 update메서드를 호출한다.
+        comment_raw = Comment.objects.last()
+        comment = CommentSerializer(comment_raw, data=data)
+        # comment의  is_valid를 통과 못할 시 raise
+        print("is_valid: ", comment.is_valid(raise_exception=True))
+        print("comment_errors: ", comment.errors)
+        print("comment.validated_data: ", comment.validated_data)
+        print("comment instance: ", comment.save())
+
+    except Exception as e:
+        print(e)
