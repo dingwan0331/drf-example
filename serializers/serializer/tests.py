@@ -7,7 +7,7 @@ invalid_data = {"a": 1, "b": 2, "c": 3}
 valid_data = {"email": "lak@na.com", "content": "a", "created": datetime.now()}
 
 
-def call_save_with_invalid_data(data):
+def call_create_with_invalid_data_as_save(data):
     try:
         # 키워드 인자로 data 하나만 넣었기때문에 save시 create메서드를 호출한다.
         comment = CommentSerializer(data=invalid_data)
@@ -22,7 +22,7 @@ def call_save_with_invalid_data(data):
         print(e)
 
 
-def call_save_with_valid_data(data):
+def call_create_with_valid_data_as_save(data):
     try:
         # 키워드 인자로 data 하나만 넣었기때문에 save시 create메서드를 호출한다.
         comment = CommentSerializer(data=valid_data)
