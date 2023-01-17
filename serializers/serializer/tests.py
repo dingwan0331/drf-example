@@ -1,7 +1,10 @@
 from datetime import datetime
 
 from .models import Comment
-from .serializers import CommentSerializerWithOutCustomValidate
+from .serializers import (
+    CommentSerializerWithOutCustomValidate,
+    CommentSerializerWithFieldValidate,
+)
 
 INVALID_DATA = {"a": 1, "b": 2, "c": 3}
 VALID_DATA = {"email": "lak@na.com", "content": "a", "created": datetime.now()}
@@ -46,6 +49,20 @@ def call_save_with_raise_exception(data):
         comment = CommentSerializerWithOutCustomValidate(comment_raw, data=data)
         # comment의  is_valid를 통과 못할 시 raise
         print("is_valid: ", comment.is_valid(raise_exception=True))
+        print("comment_errors: ", comment.errors)
+        print("comment.validated_data: ", comment.validated_data)
+        print("comment instance: ", comment.save())
+
+    except Exception as e:
+        print(e)
+
+
+def call_field_level_validate(data):
+    print("call_field_level_validate")
+    try:
+        comment = CommentSerializerWithFieldValidate(data=data)
+
+        print("is_valid: ", comment.is_valid())
         print("comment_errors: ", comment.errors)
         print("comment.validated_data: ", comment.validated_data)
         print("comment instance: ", comment.save())
