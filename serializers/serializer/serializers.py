@@ -57,3 +57,27 @@ class CommentSerializerWithFieldValidate(serializers.Serializer):
             raise serializers.ValidationError
 
         return created
+
+
+class CommentSerializerWithObjectValidate(serializers.Serializer):
+    email = serializers.CharField()
+    content = serializers.CharField(max_length=10)
+    created = serializers.DateTimeField()
+
+    def validate(self, data):
+        EMAIL_REGEX = "^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+
+        email = data["email"]
+        content = data["email"]
+        created = data["created"]
+
+        if not re.fullmatch(EMAIL_REGEX, email):
+            raise serializers.ValidationError("Invalid Email")
+
+        if type(content) != str:
+            raise serializers.ValidationError
+
+        if type(created) != datetime.datetime:
+            raise serializers.ValidationError
+
+        return data
